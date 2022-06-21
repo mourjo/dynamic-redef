@@ -1,6 +1,6 @@
 # fickle
 
-Dynamically redefine Clojure vars!
+Dynamically redefine Clojure functions!
 
 The goal, simply put is to redefine functions on a per-thread basis similar to how
 `binding` works, but in the context of `with-redefs`. For example, the following does not
@@ -20,7 +20,6 @@ not isolated to the future that is redefining it:
     (with-redefs [funk (constantly :something-new)]
       (Thread/sleep 1000)
       (funk 1))))
-
 
 (def f2
   (future
@@ -64,7 +63,6 @@ Following is an example of the usage of per-thread redefinitions.
       (Thread/sleep 1000)
       (= :something-new (funk 1)))))
 
-
 (def f2
   (future
     (fc/with-dynamic-redefs [funk (constantly :something-else)]
@@ -81,10 +79,13 @@ Following is an example of the usage of per-thread redefinitions.
 ## Known caveats
 - This per-thread rebinding will only work with Clojure concurrency
   primitives which copy per-thread bindings to newly spawned threads,
-  eg, using clojure futures. But will not work for, say a
+  eg, using Clojure `future`s. But will not work for, say a
   `java.lang.Thread`.
 - As of now this only supports functions being bound and not other
-  vars which store values, say (def x 19) for example.
+  vars which store values, say `(def x 19)` for example.
+
+
+Pull requests welcome!
 
 
 ## License
