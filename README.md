@@ -1,8 +1,8 @@
-# fickle
+# dynamic-redef
 
 Dynamically redefine Clojure functions!
 
-[![Clojars Project](https://img.shields.io/clojars/v/me.mourjo/fickle.svg)](https://clojars.org/me.mourjo/fickle)
+[![Clojars Project](https://img.shields.io/clojars/v/me.mourjo/dynamic-redef.svg)](https://clojars.org/me.mourjo/dynamic-redef)
 
 The goal, simply put is to redefine functions on a per-thread basis similar to how
 `binding` works, but in the context of `with-redefs`. For example, the following does not
@@ -44,7 +44,7 @@ not isolated to the future that is redefining it:
 ```
 
 This expectation of thread-level isolation of redefinition can be achieved using
-`fickle.core/with-dynamic-redefs`
+`dynamic-redef.core/with-dynamic-redefs`
 
 
 ## Usage
@@ -53,7 +53,7 @@ Following is an example of the usage of per-thread redefinitions.
 
 ```clj
 
-(require '[fickle.core :as fc])
+(require '[dynamic-redef.core :as dr])
 
 (defn funk
   [& args]
@@ -61,13 +61,13 @@ Following is an example of the usage of per-thread redefinitions.
 
 (def f1
   (future
-    (fc/with-dynamic-redefs [funk (constantly :something-new)]
+    (dr/with-dynamic-redefs [funk (constantly :something-new)]
       (Thread/sleep 1000)
       (= :something-new (funk 1)))))
 
 (def f2
   (future
-    (fc/with-dynamic-redefs [funk (constantly :something-else)]
+    (dr/with-dynamic-redefs [funk (constantly :something-else)]
       (Thread/sleep 2000)
       (= :something-else (funk 1)))))
 
