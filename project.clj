@@ -1,6 +1,6 @@
-(defproject fickle "0.1.0-SNAPSHOT"
+(defproject me.mourjo/fickle "0.1.0"
   :description "Dynamically redefine Clojure vars"
-  :url "http://example.com/FIXME"
+  :url "https://medium.com/helpshift-engineering/a-study-in-parallelising-tests-b5253817beae"
   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
             :url "https://www.eclipse.org/legal/epl-2.0/"}
   :dependencies []
