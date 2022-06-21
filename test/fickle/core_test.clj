@@ -8,7 +8,7 @@
 
 
 (deftest redef-concurrently-test
-  (dotimes [_ 100]
+  (dotimes [_ 1000]
     (let [[p1 p2 p3] (repeatedly 3 #(list (promise) (promise) (promise)))
           f1 (future
                @(first p1)
@@ -30,12 +30,14 @@
                     :result (funk 10)})
                  (finally @(last p2))))
           
-          f3 (future (try
-                       @(first p3)
-                       {:fickle-mind false
-                        :id :f3
-                        :result (funk 10)}
-                       (finally @(last p3))))]
+          f3 (future
+               @(first p3)
+               (try
+                 @(second p3)
+                 {:fickle-mind false
+                  :id :f3
+                  :result (funk 10)}
+                 (finally @(last p3))))]
 
       (is (= {:original-args [10]} (funk 10)))
 
