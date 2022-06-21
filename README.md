@@ -17,7 +17,6 @@ not isolated to the future that is redefining it:
 
 (def f1
   (future
-    
     (with-redefs [funk (constantly :something-new)]
       (Thread/sleep 1000)
       (funk 1))))
