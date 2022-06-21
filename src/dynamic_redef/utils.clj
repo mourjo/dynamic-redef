@@ -1,4 +1,4 @@
-(ns fickle.utils)
+(ns dynamic-redef.utils)
 
 (defn xs->map
   [xs]

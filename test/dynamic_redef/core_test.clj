@@ -1,6 +1,6 @@
-(ns fickle.core-test
+(ns dynamic-redef.core-test
   (:require [clojure.test :refer :all]
-            [fickle.core :as sut]))
+            [dynamic-redef.core :as sut]))
 
 (defn funk
   [& args]
@@ -29,7 +29,7 @@
                     :id :f2
                     :result (funk 10)})
                  (finally @(last p2))))
-          
+
           f3 (future
                @(first p3)
                (try
@@ -60,4 +60,3 @@
               :id :f3
               :result {:original-args [10]}}
              @f3)))))
-

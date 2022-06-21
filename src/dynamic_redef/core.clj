@@ -1,5 +1,5 @@
-(ns fickle.core
-  (:require [fickle.utils :as utils]))
+(ns dynamic-redef.core
+  (:require [dynamic-redef.utils :as utils]))
 
 (def ^:dynamic local-redefinitions {})
 
