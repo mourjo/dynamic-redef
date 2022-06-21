@@ -60,15 +60,15 @@ Following is an example of the usage of per-thread redefinitions.
 
 (def f1
   (future
-    (Thread/sleep 1000)
     (fc/with-dynamic-redefs [funk (constantly :something-new)]
+      (Thread/sleep 1000)
       (= :something-new (funk 1)))))
 
 
 (def f2
   (future
-    (Thread/sleep 2000)
     (fc/with-dynamic-redefs [funk (constantly :something-else)]
+      (Thread/sleep 2000)
       (= :something-else (funk 1)))))
 
 
