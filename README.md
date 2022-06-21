@@ -2,6 +2,8 @@
 
 Dynamically redefine Clojure functions!
 
+[![Clojars Project](https://img.shields.io/clojars/v/me.mourjo/fickle.svg)](https://clojars.org/me.mourjo/fickle)
+
 The goal, simply put is to redefine functions on a per-thread basis similar to how
 `binding` works, but in the context of `with-redefs`. For example, the following does not
 work with `with-redefs` because it changes the root of the var being redefined by another
