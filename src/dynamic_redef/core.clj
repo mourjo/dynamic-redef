@@ -33,7 +33,9 @@
                 metadata {:already-bound? true
                           :original old-val}]
             (.bindRoot ^clojure.lang.Var a-var
-                       (with-meta (var->redefiniton-fn a-var) metadata))
+                       (with-meta (var->redefiniton-fn a-var)
+                                  (merge (meta (get local-redefinitions a-var))
+                                         metadata)))
             (alter-meta! a-var
                          (fn [m]
                            (merge m metadata))))))))
