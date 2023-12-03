@@ -60,3 +60,8 @@
               :id :f3
               :result {:original-args [10]}}
              @f3)))))
+
+
+(deftest redef-with-metadata
+  (sut/with-dynamic-redefs [funk (with-meta funk {:funky true})]
+    (is (:funky (meta funk)))))
